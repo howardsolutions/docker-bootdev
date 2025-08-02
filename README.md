@@ -59,4 +59,19 @@ Containers boot up in SECONDS, while virtual machines can take minutes.
 - Containers virtualize at the operating system level. Isolation between containers that are running on the SAME machine is still really good.
 
 - For the most part, each container feels like it has its own operating and filesystem. In reality, a lot of resources are being shared, but they're being shared securely through namespaces.
+
 ![Container Architecture](images/container-architectures.png)
+
+<hr />
+
+# IMAGES
+
+- Container: an INSTANCE of a virtualized read-write environment
+
+- Image: A READ-ONLY DEFINITION of a CONTAINER
+
+- A CONTAINER is basically an IMAGE that's ACTIVELY RUNNING.
+
+In other words, you BOOT up a CONTAINER FROM an IMAGE.
+
+- You can create multiple separate containers all from the SAME IMAGE (it's kinda like the relationship between classes and objects).
