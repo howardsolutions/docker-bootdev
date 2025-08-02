@@ -53,6 +53,10 @@ Containers boot up in SECONDS, while virtual machines can take minutes.
 
 - Virtual machines virtualize hardware, they emulate what a physical computer does at a LOW level.
 
+![Virtual Machine Architecture](images/virtual-machine-architecture.png)
+
+
 - Containers virtualize at the operating system level. Isolation between containers that are running on the SAME machine is still really good.
 
 - For the most part, each container feels like it has its own operating and filesystem. In reality, a lot of resources are being shared, but they're being shared securely through namespaces.
+![Container Architecture](images/container-architectures.png)
