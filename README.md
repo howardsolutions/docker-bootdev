@@ -74,4 +74,28 @@ Containers boot up in SECONDS, while virtual machines can take minutes.
 
 In other words, you BOOT up a CONTAINER FROM an IMAGE.
 
-- You can create multiple separate containers all from the SAME IMAGE (it's kinda like the relationship between classes and objects).
+- You can create multiple separate CONTAINERS all from the SAME IMAGE (it's kinda like the relationship between classes and objects).
+
+## Running A Container 
+
+```zsh
+    docker run -d -p hostport:containerport namespace/name:tag
+```
+
+- `-d`: Run in detached mode (doesn't block your terminal)
+- `-p`: Publish a container's port to the host (forwarding)
+- `hostport`: The port on your local machine
+- `containerport`: The port inside the container
+- `namespace/name`: The name of the image (usually in the format username/repo)
+- `tag`: The version of the image (often latest)
+
+
+## Stop a Container 
+
+- `docker stop`: This stops the container by issuing a SIGTERM signal to the container. 
+
+You'll typically want to use docker stop.
+
+- `docker kill`: This stops the container by issuing a SIGKILL signal to the container. 
+
+This is a more forceful way to stop a container, and should be used as a last resort.
