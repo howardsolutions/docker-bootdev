@@ -43,7 +43,7 @@ Instead of just shipping an application, we can ship an application and the envi
 
 -  is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
 
-- We've had virtual machines (like VirtualBox) for a long time. The trouble with virtual machines is that they're slow as h*ck. Booting one up usually takes longer than a physical machine.
+- We've had virtual machines (like VirtualBox) for a long time. The trouble with virtual machines is that they're SLOW as h*ck. Booting one up usually takes LONGER than a physical machine.
 
 - Containers, on the other hand, gives us 90% of the benefits of virtual machines, but are SUPER lightweight. 
 
@@ -68,7 +68,7 @@ Containers boot up in SECONDS, while virtual machines can take minutes.
 
 - Container: an INSTANCE of a virtualized read-write environment
 
-- Image: A READ-ONLY DEFINITION of a CONTAINER
+- Image: A READ-ONLY DEFINITION of a CONTAINER, a definition of the APP and EVERYTHING it needs to run.
 
 - A CONTAINER is basically an IMAGE that's ACTIVELY RUNNING.
 
