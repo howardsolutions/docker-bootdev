@@ -99,3 +99,22 @@ You'll typically want to use docker stop.
 - `docker kill`: This stops the container by issuing a SIGKILL signal to the container. 
 
 This is a more forceful way to stop a container, and should be used as a last resort.
+
+## VOLUMES
+
+By DEFAULT, Docker containers DON'T RETAIN any state from past containers. For example, if I:
+
+1. Start a container from an image
+2. Make some changes to the filesystem (like installing a new package) in that container
+3. Stop the container
+4. Start a new container from the same image
+5. The new container does not have the changes I made in step 2.
+
+<p>
+However, if I restart the stopped container, it will have the changes I made. This is only worth mentioning because sometimes developers think that killing an old container and starting a new one is the same as restarting a process - but that's not true... it's more like resetting the state of the entire machine to the original image.
+</p>
+
+
+- Docker does have ways to support "persistent state" through `STORAGE VOLUMES`.
+
+- They're basically a filesystem that lives outside of the container, but can be accessed by the container.
