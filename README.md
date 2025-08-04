@@ -128,3 +128,21 @@ However, if I restart the stopped container, it will have the changes I made. Th
 - Volumes are often used by applications like Ghost, Grafana, or WordPress to persist data so that when a container is deleted and a new one is created the state of the application isn't lost. 
 
 Containerized applications are typically thought of as ephemeral (temporary). If your application breaks just because you deleted and recreated a container... it's not a very good containerization!
+
+# EXEC (EXECUTE)
+
+- When it comes to deploying applications with Docker, you'll usually just let the container do its thing
+
+-  it is possible to run commands inside a running container! It's kinda like the container version of sshing into a remote server and running a command.
+
+- Syntax: `docker exec CONTAINER_ID ls`
+
+For instance, to listing the files in current remote server
+
+## EXEC Netstat
+
+- The netstat command shows us which programs are bound to which ports `netstat -ltnp`
+
+## Live Shell
+
+Being able to run one-off commands is nice, but it's often more convenient to start a SHELL SESSION running WITHIN the CONTAINER itself.
