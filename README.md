@@ -146,3 +146,17 @@ For instance, to listing the files in current remote server
 ## Live Shell
 
 Being able to run one-off commands is nice, but it's often more convenient to start a SHELL SESSION running WITHIN the CONTAINER itself.
+
+<hr />
+
+# Docker NETWORKS
+
+## Offline
+
+- The docker run command has a `--network none` flag that makes it so that the container can't network with the outside world, which is super useful for isolating containers.
+
+You might be thinking, "why would I want to turn off networking?!?" Well, usually it's for security reasons. You might want to remove the network connection from a container in one of these scenarios:
+
+- You're running 3rd party code that you don't trust, and it shouldn't need network access
+- You're building an e-learning site, and you're allowing students to execute code on your machines
+- You know a container has a virus that's sending malicious requests over the internet, and you want to do an audit
