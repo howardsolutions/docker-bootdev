@@ -105,7 +105,7 @@ This is a more forceful way to stop a container, and should be used as a last re
 By DEFAULT, Docker containers DON'T RETAIN any state from past containers. For example, if I:
 
 1. Start a container from an image
-2. Make some changes to the filesystem (like installing a new package) in that container
+2. Make some CHANGES to the filesystem (like installing a new package) in that container
 3. Stop the container
 4. Start a new container from the same image
 5. The new container does not have the changes I made in step 2.
@@ -118,3 +118,13 @@ However, if I restart the stopped container, it will have the changes I made. Th
 - Docker does have ways to support "persistent state" through `STORAGE VOLUMES`.
 
 - They're basically a filesystem that lives outside of the container, but can be accessed by the container.
+
+## Persist Quiz Notes
+
+- A container's file system is read-write, but when you delete a container, and start a new one from the same image, that new container starts from scratch again with a copy of the image. All stateful changes are lost.
+
+- A volume's file system is read-write, but it lives outside a single container. If a container uses a volume, then stateful changes can be persisted to the volume even if the container is deleted.
+
+- Volumes are often used by applications like Ghost, Grafana, or WordPress to persist data so that when a container is deleted and a new one is created the state of the application isn't lost. 
+
+Containerized applications are typically thought of as ephemeral (temporary). If your application breaks just because you deleted and recreated a container... it's not a very good containerization!
