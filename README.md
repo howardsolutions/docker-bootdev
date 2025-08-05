@@ -177,3 +177,13 @@ A good load balancer sends new traffic to servers that have lower current resour
 ...
 
 ![Load Balancer](images/load-balancer.png)
+
+## Custom Network
+
+We can create custom <b>bridge</b> networks so that containers can communicate with each other if we want them to
+but still otherwise remain isolated. 
+
+Let's build a system where our application servers are HIDDEN WITHIN a custom network, and only our load balancer is exposed to the host.
+
+- This is a very common setup in backend architecture. The load balancer is exposed to the public internet, but the application servers are only accessible via the load balancer.
+
