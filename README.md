@@ -160,3 +160,20 @@ You might be thinking, "why would I want to turn off networking?!?" Well, usuall
 - You're running 3rd party code that you don't trust, and it shouldn't need network access
 - You're building an e-learning site, and you're allowing students to execute code on your machines
 - You know a container has a virus that's sending malicious requests over the internet, and you want to do an audit
+
+## Load Balancers
+
+A load balancer behaves as advertised: it balances a load of network traffic across some number of servers. Think of a huge website like Google.com. There's no way that a single server (literally a single computer) could handle all of the Google searches for the entire world. Google uses load balancers to route requests to different servers.
+
+A central server, called the "load balancer", receives traffic from users (aka clients), then routes those requests to different back-end application servers. In the case of Google, this splits the world's traffic across potentially many different thousands of computers.
+
+A good load balancer sends new traffic to servers that have lower current resource utilization (CPU and memory). The goal is to "balance the load" so that no single backend server becomes overwhelmed. There are many strategies that load balancers use, but a simple strategy is the "round robin" where requests are simply routed one after the other to different back-end servers:
+
+* Request 1 -> Server 1
+* Request 2 -> Server 2
+* Request 3 -> Server 3
+* Request 4 -> Server 1
+* Request 5 -> Server 2
+...
+
+![Load Balancer](images/load-balancer.png)
