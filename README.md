@@ -187,3 +187,19 @@ Let's build a system where our application servers are HIDDEN WITHIN a custom ne
 
 - This is a very common setup in backend architecture. The load balancer is exposed to the public internet, but the application servers are only accessible via the load balancer.
 
+### Caddyfiles
+
+Caddy works great as a file server, which is what our little HTML servers are, but it also works great as a load balancer! To use Caddy as a load balancer we'll need to create a custom Caddyfile to tell Caddy how we want it to balance the traffic. It's just a config file for Caddy.
+
+```
+localhost:80
+
+reverse_proxy caddy1:80 caddy2:80 {
+	lb_policy       round_robin
+}
+```
+
+This tells Caddy to run on localhost:80, and to round robin any incoming traffic to caddy1:80 and caddy2:80. 
+
+Remember, this only works because we're going to run the loadbalancer on the SAME network, so caddy1 and caddy2 will automatically resolve to our application server's containers.
+
