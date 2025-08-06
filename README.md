@@ -203,3 +203,24 @@ This tells Caddy to run on localhost:80, and to round robin any incoming traffic
 
 Remember, this only works because we're going to run the loadbalancer on the SAME network, so caddy1 and caddy2 will automatically resolve to our application server's containers.
 
+<hr />
+
+# Dockerfiles
+
+Docker isn't only useful for running other people's software (as we've been doing so far). It's also a great way to build and package our own software.
+
+I've used Docker both ways. As a DevOps/platform engineer I'm usually using other's images,
+
+but as a backend developer I was usually building images for our own servers.
+
+- Docker images are built from Dockerfiles
+
+- A Dockerfile is just a text file that contains all the commands needed to assemble an image. It's essentially the "Infrastructure as Code" (IaC) for an image. It runs commands from top to bottom, kind of like a shell script.
+
+- Instead of manually installing dependencies on servers and making updates manually, we can check a Dockerfile into source control and build it automatically. Mhmmmm, automation.
+
+```
+docker build . -t helloworld:latest
+
+The -t helloworld:latest flag tags the image with the name "helloworld" and the "latest" tag. Names are used to organize your images, and tags are used to keep track of different versions.
+```
