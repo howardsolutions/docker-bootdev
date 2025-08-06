@@ -224,3 +224,16 @@ docker build . -t helloworld:latest
 
 The -t helloworld:latest flag tags the image with the name "helloworld" and the "latest" tag. Names are used to organize your images, and tags are used to keep track of different versions.
 ```
+
+## Creating an Environment
+
+- "What's the point of dockerizing this simple service"? Well, at the moment, there are only a couple of benefits:
+
+1. Anyone with Docker can run your image, regardless of their OS
+
+2. You can easily deploy containers of your image on any cloud service that uses images (most of them) or on an orchestration server like Kubernetes.
+
+3. If your server were written in a language like Python or JavaScript, you could bundle the interpreter and dependencies INSIDE the image so that you don't need to reconfigure them on the server.
+
+- one of the best things about Docker is that it allows you to ship an entire environment.
+
