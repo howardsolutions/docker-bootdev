@@ -247,3 +247,30 @@ The -t helloworld:latest flag tags the image with the name "helloworld" and the 
 3. If your server were written in a language like Python or JavaScript, you could bundle the interpreter and dependencies INSIDE the image so that you don't need to reconfigure them on the server.
 
 - one of the best things about Docker is that it allows you to ship an entire environment.
+
+<hr />
+
+# DEBUG
+
+## Docker Logs
+
+When containers are running in detached mode with the -d flag, you don't see any output in your terminal, which is nice for keeping your terminal clean, but what if something goes wrong?
+
+```
+docker logs [OPTIONS] CONTAINER
+# CONTAINER can be an id or name
+```
+
+## Stats
+
+-we know how to inspect a containers logs, but what if we want to see the resource utilization?
+
+- It's common to spin up some Docker containers, forget about them, and then wonder why your host machine has gotten really slow. It's really nice to see how much RAM/CPU each container is using, and it's critical in production environments.
+
+## Top
+
+The docker top command shows the running processes inside a container.
+
+- Use stats for entire containers and top for processes in a container.
+
+## Resource Limits
