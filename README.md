@@ -288,3 +288,65 @@ When you notice a container's using too many resources, if you don't have the ti
 <hr />
 
 # PUBLISH
+
+- Docker Hub is the official cloud service for storing and sharing Docker images. We call these kinds of services "registries". Other popular image registries include:
+
+## Delete and PULL
+Let's delete our local copy of the image, then pull it back down from Docker Hub. Just like with GitHub, the nice thing about having images in the cloud is that if something happens to your computer, or you're working on another machine, you can always pull down your images.
+
+```
+docker image rm USERNAME/goserver
+
+docker pull USERNAME/goserver
+
+docker run -p 8991:8991 USERNAME/goserver
+```
+
+## Tags
+
+Let's publish a new version of our web server. With Docker, a tag is a label that you can assign to a specific version of an image, similar to a tag in Git.
+
+The latest tag is the default tag that Docker uses when you don't specify one. It's a convention to use latest for the most recent version of an image, but it's also common to include other tags, often semantic versioning tags like 0.1.0, 0.2.0, etc.
+
+### Deployment Pipelines
+
+Publishing new versions of Docker images is a very common method of deploying cloud-native back-end servers.
+
+Here's a diagram describing the deployment pipeline of many production systems 
+
+![Deployment pipelines](images/deployment_pipeline.png)
+
+## Latest
+
+If you look closely, you'll notice that your old version is tagged "latest"... that's a bit confusing.
+
+As it turns out, the latest tag doesn't always indicate that a specific tag is the latest version of an image. 
+
+In reality, latest is just the default tag that's used if you don't explicitly supply one. We didn't use a tag on our first version, that's why it was tagged with "latest".
+
+### Should I Use “latest”?
+
+The convention I'm familiar with is to use semantic versioning on all your images, but to also push to the "latest" tag on your most recent image. That way you can keep all of your old versions around, but the latest tag still always points to the latest version.
+
+So, for example, if I were updating an application to version 5.4.6, I would probably do it like this:
+
+```
+docker build -t bootdotdev/awesomeimage:5.4.6 -t bootdotdev/awesomeimage:latest .
+docker push bootdotdev/awesomeimage --all-tags
+```
+
+## The Bigger Picture
+## The Deployment Process
+1. The developer (you) writes some new code
+2. The developer commits the code to Git
+3. The developer pushes a new branch to GitHub
+4. The developer opens a pull request to the main branch
+5. A teammate reviews the PR and approves it (if it looks good)
+6.The developer merges the pull request
+7. Upon merging, an automated script, perhaps a Github action, is started
+8. The script builds the code (if it's a compiled language)
+9. The script builds a new docker image with the latest program
+10. The script pushes the new image to Docker Hub
+11. The server that runs the containers, perhaps a Kubernetes cluster, is told there is a new version
+12. The k8s cluster pulls down the latest image
+13. The k8s cluster shuts down old containers as it spins up new containers of the latest image
