@@ -274,3 +274,17 @@ The docker top command shows the running processes inside a container.
 - Use stats for entire containers and top for processes in a container.
 
 ## Resource Limits
+
+When you notice a container's using too many resources, if you don't have the time or the ability to "fix" the code, you can LIMIT the resources the container has available
+
+- The docker run command has a few options for limiting resources:
+
+```
+--memory: Limit the memory available to the container
+
+--cpus: Limit the CPU shares available to the container
+```
+
+<hr />
+
+# PUBLISH
