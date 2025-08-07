@@ -1,24 +1,28 @@
 # DOCKER Course Notes
 
 ## Couple Moving Parts to Keep in mind
+<details open> 
+    <summary>🧠 Open To Read more</summary>
 
-1. The "Docker server" or "Docker Daemon". 
+1. The "Docker server" or "Docker Daemon".
 
-This listens to requests from the desktop app and executes them. 
+This listens to requests from the desktop app and executes them.
 
 If this isn't running NOTHING ELSE will work.
 
-2. The "Docker Desktop" GUI. 
+2. The "Docker Desktop" GUI.
 
-Starting the GUI should start the server, at least that's how I usually ensure the server is running. 
+Starting the GUI should start the server, at least that's how I usually ensure the server is running.
 
 The GUI is the VISUAL way to interact with Docker.
 
-3. The Docker CLI. 
+3. The Docker CLI.
 
-As a developer, most of your work will be interacting with Docker via the CLI. 
+As a developer, most of your work will be interacting with Docker via the CLI.
 
 I'd recommend using the GUI to visualize what's going on with Docker, but executing most of your commands through the command line.
+
+</details>
 
 ## What Is Docker?
 
@@ -26,7 +30,7 @@ Docker makes development efficient and predictable
 
 takes away repetitive, mundane configuration tasks and is used throughout the development lifecycle for fast, easy and portable application development – desktop and cloud.
 
-Put simply: Docker allows us to deploy our applications inside "containers", which are kind of like very lightweight virtual machines. 
+Put simply: Docker allows us to deploy our applications inside "containers", which are kind of like very lightweight virtual machines.
 
 Instead of just shipping an application, we can ship an application and the environment it runs in.
 
@@ -37,15 +41,16 @@ Instead of just shipping an application, we can ship an application and the envi
 ```
 "For most of my career, if my company used AWS to deploy, we used AWS to host our images. If we used GCP to deploy, we hosted images on GCP. I'd usually just use whatever's most convenient and cost effective, the features are very similar between providers."
 ```
+
 <hr />
 
 # CONTAINERS
 
--  is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
+- is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
 
-- We've had virtual machines (like VirtualBox) for a long time. The trouble with virtual machines is that they're SLOW as h*ck. Booting one up usually takes LONGER than a physical machine.
+- We've had virtual machines (like VirtualBox) for a long time. The trouble with virtual machines is that they're SLOW as h\*ck. Booting one up usually takes LONGER than a physical machine.
 
-- Containers, on the other hand, gives us 90% of the benefits of virtual machines, but are SUPER lightweight. 
+- Containers, on the other hand, gives us 90% of the benefits of virtual machines, but are SUPER lightweight.
 
 Containers boot up in SECONDS, while virtual machines can take minutes.
 
@@ -54,7 +59,6 @@ Containers boot up in SECONDS, while virtual machines can take minutes.
 - Virtual machines virtualize hardware, they emulate what a physical computer does at a LOW level.
 
 ![Virtual Machine Architecture](images/virtual-machine-architecture.png)
-
 
 - Containers virtualize at the operating system level. Isolation between containers that are running on the SAME machine is still really good.
 
@@ -76,7 +80,7 @@ In other words, you BOOT up a CONTAINER FROM an IMAGE.
 
 - You can create multiple separate CONTAINERS all from the SAME IMAGE (it's kinda like the relationship between classes and objects).
 
-## Running A Container 
+## Running A Container
 
 ```zsh
     docker run -d -p hostport:containerport namespace/name:tag
@@ -89,18 +93,20 @@ In other words, you BOOT up a CONTAINER FROM an IMAGE.
 - `namespace/name`: The name of the image (usually in the format username/repo)
 - `tag`: The version of the image (often latest)
 
+## Stop a Container
 
-## Stop a Container 
-
-- `docker stop`: This stops the container by issuing a SIGTERM signal to the container. 
+- `docker stop`: This stops the container by issuing a SIGTERM signal to the container.
 
 You'll typically want to use docker stop.
 
-- `docker kill`: This stops the container by issuing a SIGKILL signal to the container. 
+- `docker kill`: This stops the container by issuing a SIGKILL signal to the container.
 
 This is a more forceful way to stop a container, and should be used as a last resort.
 
 ## VOLUMES
+
+<details> 
+    <summary>🧠 Open To Read more</summary>
 
 By DEFAULT, Docker containers DON'T RETAIN any state from past containers. For example, if I:
 
@@ -114,10 +120,11 @@ By DEFAULT, Docker containers DON'T RETAIN any state from past containers. For e
 However, if I restart the stopped container, it will have the changes I made. This is only worth mentioning because sometimes developers think that killing an old container and starting a new one is the same as restarting a process - but that's not true... it's more like resetting the state of the entire machine to the original image.
 </p>
 
-
 - Docker does have ways to support "persistent state" through `STORAGE VOLUMES`.
 
 - They're basically a filesystem that lives outside of the container, but can be accessed by the container.
+
+</details>
 
 ## Persist Quiz Notes
 
@@ -125,7 +132,7 @@ However, if I restart the stopped container, it will have the changes I made. Th
 
 - A volume's file system is read-write, but it lives outside a single container. If a container uses a volume, then stateful changes can be persisted to the volume even if the container is deleted.
 
-- Volumes are often used by applications like Ghost, Grafana, or WordPress to persist data so that when a container is deleted and a new one is created the state of the application isn't lost. 
+- Volumes are often used by applications like Ghost, Grafana, or WordPress to persist data so that when a container is deleted and a new one is created the state of the application isn't lost.
 
 Containerized applications are typically thought of as ephemeral (temporary). If your application breaks just because you deleted and recreated a container... it's not a very good containerization!
 
@@ -133,7 +140,7 @@ Containerized applications are typically thought of as ephemeral (temporary). If
 
 - When it comes to deploying applications with Docker, you'll usually just let the container do its thing
 
--  it is possible to run commands inside a running container! It's kinda like the container version of sshing into a remote server and running a command.
+- it is possible to run commands inside a running container! It's kinda like the container version of sshing into a remote server and running a command.
 
 - Syntax: `docker exec CONTAINER_ID ls`
 
@@ -169,23 +176,27 @@ A central server, called the "load balancer", receives traffic from users (aka c
 
 A good load balancer sends new traffic to servers that have lower current resource utilization (CPU and memory). The goal is to "balance the load" so that no single backend server becomes overwhelmed. There are many strategies that load balancers use, but a simple strategy is the "round robin" where requests are simply routed one after the other to different back-end servers:
 
-* Request 1 -> Server 1
-* Request 2 -> Server 2
-* Request 3 -> Server 3
-* Request 4 -> Server 1
-* Request 5 -> Server 2
-...
+- Request 1 -> Server 1
+- Request 2 -> Server 2
+- Request 3 -> Server 3
+- Request 4 -> Server 1
+- Request 5 -> Server 2
+  ...
 
 ![Load Balancer](images/load-balancer.png)
 
 ## Custom Network
 
+<details>
+    <summary>🧠 Open to Read</summary>
+
 We can create custom <b>bridge</b> networks so that containers can communicate with each other if we want them to
-but still otherwise remain isolated. 
+but still otherwise remain isolated.
 
 Let's build a system where our application servers are HIDDEN WITHIN a custom network, and only our load balancer is exposed to the host.
 
 - This is a very common setup in backend architecture. The load balancer is exposed to the public internet, but the application servers are only accessible via the load balancer.
+</details>
 
 ### Caddyfiles
 
@@ -199,7 +210,7 @@ reverse_proxy caddy1:80 caddy2:80 {
 }
 ```
 
-This tells Caddy to run on localhost:80, and to round robin any incoming traffic to caddy1:80 and caddy2:80. 
+This tells Caddy to run on localhost:80, and to round robin any incoming traffic to caddy1:80 and caddy2:80.
 
 Remember, this only works because we're going to run the loadbalancer on the SAME network, so caddy1 and caddy2 will automatically resolve to our application server's containers.
 
@@ -236,4 +247,3 @@ The -t helloworld:latest flag tags the image with the name "helloworld" and the 
 3. If your server were written in a language like Python or JavaScript, you could bundle the interpreter and dependencies INSIDE the image so that you don't need to reconfigure them on the server.
 
 - one of the best things about Docker is that it allows you to ship an entire environment.
-

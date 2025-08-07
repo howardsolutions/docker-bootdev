@@ -1,0 +1,56 @@
+[
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    book_path = \"books/frankenstein.txt\"\n    text = get_book_text(book_path)\n    num_words = get_num_words(text)\n    chars_dict = get_chars_dict(text)\n    chars_sorted_list = chars_dict_to_sorted_list(chars_dict)\n    print(f\"--- Begin report of {book_path} ---\")\n    print(f\"{num_words} words found in the document\")\n    print()\n    for item in chars_sorted_list:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_num_words",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_num_words(text):\n    words = text.split()\n    return len(words)\ndef sort_on(d):\n    return d[\"num\"]\ndef chars_dict_to_sorted_list(num_chars_dict):\n    sorted_list = []\n    for ch in num_chars_dict:\n        sorted_list.append({\"char\": ch, \"num\": num_chars_dict[ch]})\n    sorted_list.sort(reverse=True, key=sort_on)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "sort_on",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def sort_on(d):\n    return d[\"num\"]\ndef chars_dict_to_sorted_list(num_chars_dict):\n    sorted_list = []\n    for ch in num_chars_dict:\n        sorted_list.append({\"char\": ch, \"num\": num_chars_dict[ch]})\n    sorted_list.sort(reverse=True, key=sort_on)\n    return sorted_list\ndef get_chars_dict(text):\n    chars = {}",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "chars_dict_to_sorted_list",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def chars_dict_to_sorted_list(num_chars_dict):\n    sorted_list = []\n    for ch in num_chars_dict:\n        sorted_list.append({\"char\": ch, \"num\": num_chars_dict[ch]})\n    sorted_list.sort(reverse=True, key=sort_on)\n    return sorted_list\ndef get_chars_dict(text):\n    chars = {}\n    for c in text:\n        lowered = c.lower()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_chars_dict",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_chars_dict(text):\n    chars = {}\n    for c in text:\n        lowered = c.lower()\n        if lowered in chars:\n            chars[lowered] += 1\n        else:\n            chars[lowered] = 1\n    return chars\ndef get_book_text(path):",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_book_text",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_book_text(path):\n    with open(path) as f:\n        return f.read()\nmain()",
+        "detail": "main",
+        "documentation": {}
+    }
+]
